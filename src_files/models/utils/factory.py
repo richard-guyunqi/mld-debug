@@ -42,7 +42,8 @@ def create_model(args, load_head=False, colo=False):
         model = mld.add_ml_decoder_head(model,num_classes=args.num_classes,num_of_groups=args.num_of_groups,
                                     decoder_embedding=args.decoder_embedding, zsl=args.zsl, use_xformers=args.xformers,
                                         learn_query=args.learn_query if hasattr(args, 'learn_query') else False,
-                                        num_layers_decoder=args.num_layers_decoder)
+                                        # num_layers_decoder=args.num_layers_decoder
+                                        )
     ####################################################################################
     # loading pretrain model
     model_path = args.model_path

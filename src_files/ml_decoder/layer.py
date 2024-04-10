@@ -35,10 +35,19 @@ class TransformerDecoderLayerOptimal(nn.Module):
             state['activation'] = torch.nn.functional.relu
         super(TransformerDecoderLayerOptimal, self).__setstate__(state)
 
+    @property
+    def self_attn(self):
+        return self.multihead_attn
+    
+    
     def forward(self, tgt: Tensor, memory: Tensor, tgt_mask: Optional[Tensor] = None,
                 memory_mask: Optional[Tensor] = None,
                 tgt_key_padding_mask: Optional[Tensor] = None,
-                memory_key_padding_mask: Optional[Tensor] = None) -> Tensor:
+                memory_key_padding_mask: Optional[Tensor] = None,
+                # signature has changed: https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#TransformerDecoderLayer.forward
+                tgt_is_causal: bool = False,
+                memory_is_causal: bool = False,
+                ) -> Tensor:
         """
             tgt: [N_query, B, E]
             memory: [N_feat, B, E]

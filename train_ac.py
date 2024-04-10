@@ -36,6 +36,12 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 import warnings
 warnings.filterwarnings('ignore')
 
+
+
+def cleanup():
+    dist.destroy_process_group()   
+
+
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
 
@@ -180,6 +186,10 @@ class Trainer:
         logger.info(f"len(val_dataset)): {len(val_dataset)}")
         logger.info(f"len(train_dataset)): {len(train_dataset)}")
 
+
+        # ========== DEBUG ==========
+        self.local_rank = 0        
+        
         # Pytorch Data loader
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset, num_replicas=self.world_size,
                                                                         rank=self.local_rank, shuffle=not self.args.arb)
@@ -358,8 +368,21 @@ class Trainer:
 
 
 
+def make_fake_args():
+    # !python train_ac.py --imgs_train ./data --imgs_val ./data --label_train ./fake_labels.json --label_val ./fake_labels.json
+    args = parser.parse_args([])
+    args.imgs_train = './data'
+    args.imgs_val = './data'
+    args.label_train = './fake_labels.json'
+    args.label_val = './fake_labels.json'
+    args.batch_size = 4
+    args.xformers = False
+    return args
+
 
 if __name__ == '__main__':
-    args = parser.parse_args()
+
+    # args = parser.parse_args()
+    args = make_fake_args()
     trainer =Trainer(args)
     trainer.train()

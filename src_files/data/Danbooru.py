@@ -80,7 +80,7 @@ class Danbooru(Dataset):
         self.skip_num=skip_num
 
     def get_path(self, item):
-        return os.path.join(self.root, str(item[0] % 1000).zfill(4), f'{item[0]}.{self.file_ext if self.file_ext else item[1]}')
+        return os.path.join(self.root, f'{item[0]}.{self.file_ext if self.file_ext else item[1]}')
 
     def get_image(self, img_path):
         img = Image.open(img_path).convert('RGB')
