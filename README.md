@@ -1,3 +1,29 @@
+# Files explanation:
+## In active Use:
+demo.ca.py: Inference for caformer-mld
+train_ca_acpy: Training file for the our model, basically a wrapper for train_ac.py
+train_ac: The main body of training code, originally for tresnet
+gradio_demo_launcher.py: Gradio demo starter code
+test_dataset: A small demo dataset, 20 images, both common and uncommon images
+test.ipynb: Some random notebook used to run py files and check environment
+sematics_test.ipynb: Some random notebook used to run py files and check environment
+
+## Path to Danbooru metadata
+s3://pixai-test-uw2/richard/final_Danbooru_5.parquet
+
+## Path to model checkpoints
+s3://pixai-test-uw2/richard/mld-ckpts/records/
+
+## Path to tag-index dictionary
+s3://pixai-test-uw2/richard/tags_index_dict.parquet
+
+
+## Not in active use:
+demo.py: Inference for tresnet-mld (not used)
+class.json
+
+
+
 # ML-Danbooru: Anime image tags detector
 
 ## Introduction
