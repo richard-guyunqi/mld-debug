@@ -22,13 +22,13 @@ class AsymmetricLoss(nn.Module):
 
         B = x.shape[0]
         # Calculating Probabilities
-        x_sigmoid = torch.sigmoid(x)
+        x_sigmoid = torch.sigmoid(x) # Pass through a layer of sigmoid
         xs_pos = x_sigmoid
         xs_neg = 1 - x_sigmoid
 
         # Asymmetric Clipping
         if self.clip is not None and self.clip > 0:
-            xs_neg = (xs_neg + self.clip).clamp(max=1)
+            xs_neg = (xs_neg + self.clip).clamp(max=1)  # Prevent xs_neg from being too small
 
         # Basic CE calculation
         los_pos = y * torch.log(xs_pos.clamp(min=self.eps))
@@ -39,9 +39,9 @@ class AsymmetricLoss(nn.Module):
         if self.gamma_neg > 0 or self.gamma_pos > 0:
             if self.disable_torch_grad_focal_loss:
                 torch.set_grad_enabled(False)
-            pt0 = xs_pos * y
-            pt1 = xs_neg * (1 - y)  # pt = p if t > 0 else 1-p
-            pt = pt0 + pt1
+            pt0 = xs_pos * y   # a vector of score on each entry, positive
+            pt1 = xs_neg * (1 - y)  # a vector of score on each entry, positive
+            pt = pt0 + pt1 # # a vector of score on each entry, all
             one_sided_gamma = self.gamma_pos * y + self.gamma_neg * (1 - y)
             one_sided_w = torch.pow(1 - pt, one_sided_gamma)
             if self.disable_torch_grad_focal_loss:

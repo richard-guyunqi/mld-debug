@@ -6,7 +6,7 @@ import shutil
 from functools import lru_cache
 from typing import Optional, List, Tuple, Mapping
 import sys
-from demo_ca_gradio import Demo
+from demo_ca import Demo
 
 # Continue with the rest of your code using Demo
 
