@@ -1,0 +1,20 @@
+{
+  "data": "",
+  "ckpt": "",
+  "model_name": "caformer_m36",
+  "num_classes": 20586,
+  "keep_ratio": false,
+  "bs": 1,
+  "tag_index_dict_path": "s3://pixai-test-uw2/richard/tags_index_dict.parquet",
+  "use_ml_decoder": 0,
+  "fp16": false,
+  "ema": false,
+  "frelu": true,
+  "xformers": false,
+  "decoder_embedding": 512,
+  "num_layers_decoder": 4,
+  "num_head_decoder": 8,
+  "num_queries": 80,
+  "scale_skip": 1,
+  "out_type": "json"
+}
