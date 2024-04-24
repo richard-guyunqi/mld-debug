@@ -1,12 +1,13 @@
 # Files explanation:
-## In active Use:
-demo.ca.py: Inference for caformer-mld
-train_ca_acpy: Training file for the our model, basically a wrapper for train_ac.py
-train_ac: The main body of training code, originally for tresnet
-gradio_demo_launcher.py: Gradio demo starter code
-test_dataset: A small demo dataset, 20 images, both common and uncommon images
-test.ipynb: Some random notebook used to run py files and check environment
-sematics_test.ipynb: Some random notebook used to run py files and check environment
+## In Active Use:
+- **demo.ca.py**: Inference for caformer-mld.
+- **train_ca_ac.py**: Training file for our model, essentially a wrapper for `train_ac.py`.
+- **train_ac.py**: The main body of training code, originally designed for tresnet.
+- **gradio_demo_launcher.py**: Gradio demo starter code.
+- **test_dataset**: A small demo dataset consisting of 20 images, featuring both common and uncommon subjects.
+- **test.ipynb**: A notebook used for executing Python files and checking the environment.
+- **sematics_test.ipynb**: Another notebook used for running Python files and environment checks.
+
 
 ## Path to Danbooru metadata
 s3://pixai-test-uw2/richard/final_Danbooru_5.parquet
