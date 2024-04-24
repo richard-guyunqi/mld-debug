@@ -1,9 +1,24 @@
 # Files explanation:
+## Usage:
+Training: 
+```
+!torchrun --standalone --nnodes=1 --nproc-per-node=8 train_ca_ac_good.py --batch_size 10 --save_step 5000 --xformers False --log_step 500
+```
+Inference:
+```
+!python demo_ca_find_thrd.py --data test_dataset --ckpt models/caformer_m36-mAP45.ckpt --general_thr .99 --characters_thr .70
+```
+Gradio Demo: 
+```
+!python gradio_demo_test.py
+```
+
 ## In Active Use:
-- **demo.ca.py**: Inference for caformer-mld.
+- **demo_ca.py**: Inference for caformer-mld.
+- **demo_ca_gradio.py**: Gradio-adjusted demo
 - **train_ca_ac.py**: Training file for our model, essentially a wrapper for `train_ac.py`.
 - **train_ac.py**: The main body of training code, originally designed for tresnet.
-- **gradio_demo_launcher.py**: Gradio demo starter code.
+- **gradio_demo_launcher.py**: Gradio demo starter code. Just run !python gradio_demo_test.py to start
 - **test_dataset**: A small demo dataset consisting of 20 images, featuring both common and uncommon subjects.
 - **test.ipynb**: A notebook used for executing Python files and checking the environment.
 - **sematics_test.ipynb**: Another notebook used for running Python files and environment checks.
